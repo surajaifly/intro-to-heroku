@@ -23,6 +23,7 @@ client.connect();
 var propertyTable = 'property__c';
 var favoriteTable = 'favorite__c';
 var brokerTable = 'broker__c';
+var contactTable = 'salesforce.contact';
 
 // setup the demo data if needed
 client.query('SELECT * FROM salesforce.broker__c', function(error, data) {
@@ -46,6 +47,12 @@ client.query('SELECT * FROM salesforce.broker__c', function(error, data) {
 
 app.get('/property', function(req, res) {
   client.query('SELECT * FROM ' + propertyTable, function(error, data) {
+    res.json(data.rows);
+  });
+});
+
+app.get('/contact', function(req, res) {
+  client.query('SELECT * FROM ' + contactTable, function(error, data) {
     res.json(data.rows);
   });
 });
