@@ -59,8 +59,13 @@ export class PropertyService {
         return this.http.get('/contact').map(response => response.json().map(prettifyProperty));
     }
 
+    /*
     findById(id) {
         return this.http.get('/property/' + id).map(response => prettifyProperty(response.json()));
+    }
+    */
+    findById(id) {
+        return this.http.get('/contact/' + id).map(response => prettifyProperty(response.json()));
     }
 
     getFavorites() {
