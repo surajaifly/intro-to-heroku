@@ -49,8 +49,12 @@ export class PropertyService {
         this.http = http;
     }
 
-    findAll() {
+    findAllProduct() {
         return this.http.get('/property').map(response => response.json().map(prettifyProperty));
+    }
+    
+    findAll() {
+        return this.http.get('/contact').map(response => response.json().map(prettifyProperty));
     }
 
     findById(id) {
