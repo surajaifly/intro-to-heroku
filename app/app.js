@@ -31,7 +31,7 @@ class MyApp {
 
         this.pages = [
             {title: 'Welcome', component: WelcomePage, icon: "bookmark"},
-            {title: 'Accounts', component: PropertyListPage, icon: "people"}
+            {title: 'Contacts', component: PropertyListPage, icon: "people"}
         ];
 
         this.rootPage = WelcomePage;
