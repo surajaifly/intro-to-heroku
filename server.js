@@ -76,6 +76,12 @@ app.post('/favorite', function(req, res) {
   });
 });
 
+app.post('/contact/:id', function(req, res) {
+  client.query('UPDATE salesforce.contact SET firstname = $2 WHERE sfid = $1', [req.params.id, 'Update from Heroku'], function(error, data) {
+    res.json(data.rows[0]);
+  });
+});
+
 app.delete('/favorite/:sfid', function(req, res) {
   client.query('DELETE FROM ' + favoriteTable + ' WHERE sfid = $1', [req.params.sfid], function(error, data) {
     res.json(data);
