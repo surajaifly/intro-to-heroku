@@ -20,8 +20,9 @@ export class PropertyDetailsPage {
     }
 
     ngOnInit() {
-        this.propertyService.findById(this.property.id).subscribe(property => this.property = property);
         console.log('INIT', this.property);
+        this.propertyService.findById(this.property.id).subscribe(property => this.property = property);
+        console.log('INIT', this.propertyService);
     }
 
     favorite(event, property) {
