@@ -23,10 +23,10 @@ let prettifyProperty = (property) => {
     };
     prettyProperty.broker = property.broker__c_sfid ?
         {
-            id: property.broker__c_sfid,
-            name: property.broker__c_name,
-            title: property.broker__c_title__c,
-            picture: property.broker__c_picture__c
+            id: property.sfid,
+            name: property.name,
+            title: property.title,
+            picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpGj-KjriTMRVX-pHHUKcyxQe3wblMTAq3t5iA_xivZwFq9sjbGuYmRICJ60qH0zx9uF0&usqp=CAU'
         } : {};
     return prettyProperty;
 };
