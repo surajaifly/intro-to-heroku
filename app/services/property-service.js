@@ -7,7 +7,6 @@ import 'rxjs/Rx';
     from the Salesforce specific naming convention. This could also be done Salesforce-side by creating a custom REST service.
  */
 let prettifyProperty = (property) => {
-    console.log('property', property);
     let prettyProperty = {
         id: property.sfid,
         title: property.title,
@@ -30,6 +29,10 @@ let prettifyProperty = (property) => {
             picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpGj-KjriTMRVX-pHHUKcyxQe3wblMTAq3t5iA_xivZwFq9sjbGuYmRICJ60qH0zx9uF0&usqp=CAU'
         } : {};
     return prettyProperty;
+};
+
+let seeRespose = (property) => {
+    console.log('property', property);
 };
 
 let prettifyFavorite = (favorite) => {
@@ -66,7 +69,8 @@ export class PropertyService {
     }
     */
     findById(id) {
-        return this.http.post('/contact/' + id).map(response => prettifyProperty(response.json()));
+        //return this.http.post('/contact/' + id).map(response => prettifyProperty(response.json()));
+        return this.http.post('/contact/' + id).map(response => seeRespose(response));
     }
 
     getFavorites() {
