@@ -7,6 +7,7 @@ import 'rxjs/Rx';
     from the Salesforce specific naming convention. This could also be done Salesforce-side by creating a custom REST service.
  */
 let prettifyProperty = (property) => {
+    console.log('property', property);
     let prettyProperty = {
         id: property.sfid,
         title: property.title,
