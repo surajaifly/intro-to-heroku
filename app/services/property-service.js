@@ -9,26 +9,30 @@ import 'rxjs/Rx';
 let prettifyProperty = (property) => {
     let prettyProperty = {
         id: property.sfid,
-        title: property.title__c,
-        city: property.city__c,
-        state: property.state__c,
-        price: property.price__c,
-        priceFormatted: "$" + property.price__c.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-        beds: property.beds__c,
-        baths: property.baths__c,
-        description: property.description__c,
-        picture: property.picture__c,
-        thumbnail: property.thumbnail__c,
+        title: property.title,
+        city: property.firstname,
+        state: property.lastname,
+        price: property.level__c,
+        priceFormatted: "$" + "100",
+        beds: Math.floor(Math.random() * 5) + 1 ,
+        baths: Math.floor(Math.random() * 2) + 1 ,
+        description: 'Test Decription',
+        picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpGj-KjriTMRVX-pHHUKcyxQe3wblMTAq3t5iA_xivZwFq9sjbGuYmRICJ60qH0zx9uF0&usqp=CAU',
+        thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/1200px-Volkswagen_logo_2019.svg.png',
         likes: Math.floor(Math.random() * 20) + 1 // Likes are simulated: random number between 0 and 20. See "Favorites" for similar functionality.
     };
     prettyProperty.broker = property.broker__c_sfid ?
         {
-            id: property.broker__c_sfid,
-            name: property.broker__c_name,
-            title: property.broker__c_title__c,
-            picture: property.broker__c_picture__c
+            id: property.sfid,
+            name: property.name,
+            title: property.title,
+            picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpGj-KjriTMRVX-pHHUKcyxQe3wblMTAq3t5iA_xivZwFq9sjbGuYmRICJ60qH0zx9uF0&usqp=CAU'
         } : {};
     return prettyProperty;
+};
+
+let seeRespose = (property) => {
+    console.log('property', property);
 };
 
 let prettifyFavorite = (favorite) => {
@@ -49,12 +53,28 @@ export class PropertyService {
         this.http = http;
     }
 
+    
+    /*
     findAll() {
         return this.http.get('/property').map(response => response.json().map(prettifyProperty));
     }
+    */
+    findAll() {
+        return this.http.get('/contact').map(response => response.json().map(prettifyProperty));
+    }
 
+    /*
     findById(id) {
         return this.http.get('/property/' + id).map(response => prettifyProperty(response.json()));
+    }
+    */
+    findById(id) {
+        //return this.http.post('/contact/' + id).map(response => prettifyProperty(response.json()));
+        return this.http.post('/contact/' + id).map(response => seeRespose(response));
+    }
+
+    updateContact(contactObj) { 
+        return this.http.post('/updatecontact/', contactObj).map(response => seeRespose(response));
     }
 
     getFavorites() {
