@@ -77,6 +77,7 @@ app.post('/favorite', function(req, res) {
 });
 
 app.post('/contact/:id', function(req, res) {
+  console.log('req', req);
   client.query('UPDATE salesforce.contact SET firstname = $2 WHERE sfid = $1', [req.params.id, req.params.lastname], function(error, data) {
     res.json(data.rows[0]);
   });
