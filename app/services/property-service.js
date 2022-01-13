@@ -73,6 +73,10 @@ export class PropertyService {
         return this.http.post('/contact/' + id).map(response => seeRespose(response));
     }
 
+    updateContact(contactObj) { 
+        return this.http.post('/updatecontact/', contactObj).map(response => seeRespose(response));
+    }
+
     getFavorites() {
         return this.http.get('/favorite').map(response => response.json().map(prettifyFavorite));
     }
