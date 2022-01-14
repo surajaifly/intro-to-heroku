@@ -74,7 +74,7 @@ export class PropertyService {
     }
 
     updateContact(contactObj) { 
-        return this.http.post('/updatecontact/', contactObj).map(response => seeRespose(response));
+        return this.http.post('/updatecontact/', JSON.stringify(contactObj)).map(response => seeRespose(response));
     }
 
     getFavorites() {
