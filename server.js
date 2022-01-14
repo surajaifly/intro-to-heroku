@@ -23,6 +23,7 @@ client.connect();
 var propertyTable = 'property__c';
 var favoriteTable = 'favorite__c';
 var brokerTable = 'broker__c';
+var contactTable = 'salesforce.contact';
 
 // setup the demo data if needed
 client.query('SELECT * FROM salesforce.broker__c', function(error, data) {
@@ -50,6 +51,12 @@ app.get('/property', function(req, res) {
   });
 });
 
+app.get('/contact', function(req, res) {
+  client.query('SELECT * FROM ' + contactTable, function(error, data) {
+    res.json(data.rows);
+  });
+});
+
 app.get('/property/:id', function(req, res) {
   client.query('SELECT ' + propertyTable + '.*, ' + brokerTable + '.sfid AS broker__c_sfid, ' + brokerTable + '.name AS broker__c_name, ' + brokerTable + '.email__c AS broker__c_email__c, ' + brokerTable + '.phone__c AS broker__c_phone__c, ' + brokerTable + '.mobile_phone__c AS broker__c_mobile_phone__c, ' + brokerTable + '.title__c AS broker__c_title__c, ' + brokerTable + '.picture__c AS broker__c_picture__c FROM ' + propertyTable + ' INNER JOIN ' + brokerTable + ' ON ' + propertyTable + '.broker__c = ' + brokerTable + '.sfid WHERE ' + propertyTable + '.sfid = $1', [req.params.id], function(error, data) {
     res.json(data.rows[0]);
@@ -66,6 +73,13 @@ app.get('/favorite', function(req, res) {
 app.post('/favorite', function(req, res) {
   client.query('INSERT INTO ' + favoriteTable + ' (property__c) VALUES ($1)', [req.body.property__c], function(error, data) {
     res.json(data);
+  });
+});
+
+app.post('/contact/:id', function(req, res) {
+  console.log('reg', req);
+  client.query('UPDATE salesforce.contact SET firstname = $2 WHERE sfid = $1', [req.params.id, req.body.title], function(error, data) {
+    res.json(data.rows[0]);
   });
 });
 

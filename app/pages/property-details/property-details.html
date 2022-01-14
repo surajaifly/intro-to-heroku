@@ -11,7 +11,7 @@
             <img src="{{property.picture}}"/>
             <ion-card-content>
                 <h2 class="card-title">
-                    {{property.title}}
+                    <input id="team_name" type="text" name="name_field" value={{property.title}}>
                 </h2>
                 <p>
                     {{property.description}}
@@ -43,22 +43,7 @@
             </ion-list>
             <ion-row no-padding>
                 <ion-col>
-                    <button clear small (click)="favorite($event, property)">
-                        <ion-icon name="star"></ion-icon>
-                        Favorite
-                    </button>
-                </ion-col>
-                <ion-col text-center>
-                    <button clear small (click)="like($event, property)">
-                        <ion-icon name="thumbs-up"></ion-icon>
-                        Like
-                    </button>
-                </ion-col>
-                <ion-col text-right>
-                    <button clear small (click)="share($event, property)">
-                        <ion-icon name="share-alt"></ion-icon>
-                        Share
-                    </button>
+                    <ion-button color="primary" (click)="">Primary</ion-button>
                 </ion-col>
             </ion-row>
         </ion-card>

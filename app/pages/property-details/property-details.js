@@ -36,6 +36,10 @@ export class PropertyDetailsPage {
 
     }
 
+    saveContact(event, property) { 
+        this.propertyService.updateContact(property).subscribe(property => this.property = property);
+    }
+
     like(event, property) {
         // Simulated in this sample. See "Favorite" for similar functionality.
         this.property.likes++;
